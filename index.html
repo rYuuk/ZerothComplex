@@ -123,6 +123,8 @@
     </div>
       <script type='text/javascript'>
   // connect to canvas
+  if (!isMobile()) {
+
   var Module = {
     TOTAL_MEMORY: 268435456,
     filePackagePrefixURL: "HoppingDog/Release/",
@@ -160,12 +162,19 @@
       this.totalDependencies = Math.max(this.totalDependencies, left);
       Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
     }
+    
   };
+}
+  
   Module.setStatus('Downloading (0.0/1)');
+  function isMobile() {
+return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 </script>
 <script src="HoppingDog/Release/UnityConfig.js"></script>
 <script src="HoppingDog/Release/fileloader.js"></script>
-<script>if (!(!Math.fround)) {
+<script>if (!isMobile && !(!Math.fround)) {
   var script = document.createElement('script');
   script.src = "HoppingDog/Release/Hopping Dog.js";
   document.body.appendChild(script);
