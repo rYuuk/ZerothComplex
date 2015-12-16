@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="images/webicon.png">
+    <script src="HoppingDog/TemplateData/UnityProgress.js"></script>
   
   <title>Zeroth Complex</title>
    <!-- Bootstrap core CSS -->
@@ -112,7 +113,7 @@
            <hr>
             <h4>Hopping Dog</h4>
              <div class="hideOnMobile">
-             <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="480px" width="640px"></canvas>
+             <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"  height="480px" width="640px"></canvas>
     
       <div class="logo"></div>
       <div class="fullscreen"><img src="HoppingDog/TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);" /></div>
@@ -124,99 +125,18 @@
        <a href="https://play.google.com/store/apps/details?id=com.zerothcomplex.hoppingdog&hl=en"><div class="googleplay"><img src="images/googel-play-badge.png" width="180" height="50" alt="GooglePlay" title="GooglePlay"/></div></a>
    
     </div>
-      <script type='text/javascript'>
-  // connect to canvas
-  if (!isMobile()) {
-
+    <script type='text/javascript'>
   var Module = {
     TOTAL_MEMORY: 268435456,
-    filePackagePrefixURL: "HoppingDog/Release/",
-    memoryInitializerPrefixURL: "HoppingDog/Release/",
-    preRun: [],
-    postRun: [],
-    print: (function() {
-      return function(text) {
-        console.log (text);
-      };
-    })(),
-    printErr: function(text) {
-      console.error (text);
-    },
-    canvas: document.getElementById('canvas'),
-    progress: null,
-    setStatus: function(text) {
-      if (this.progress == null) 
-      {
-        if (typeof UnityProgress != 'function')
-          return;
-        this.progress = new UnityProgress (canvas);
-      }
-      if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
-      if (text === Module.setStatus.text) return;
-      this.progress.SetMessage (text);
-      var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-      if (m)
-        this.progress.SetProgress (parseInt(m[2])/parseInt(m[4]));
-      if (text === "") 
-        this.progress.Clear()
-    },
-    totalDependencies: 0,
-    monitorRunDependencies: function(left) {
-      this.totalDependencies = Math.max(this.totalDependencies, left);
-      Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-    }
-    
+    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    dataUrl: "HoppingDog/Release/Hopping Dog.data",
+    codeUrl: "HoppingDog/Release/Hopping Dog.js",
+    memUrl: "HoppingDog/Release/Hopping Dog.mem",
   };
-}
-  
-  Module.setStatus('Downloading (0.0/1)');
-  function isMobile() {
-return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
 </script>
-<script src="HoppingDog/Release/UnityConfig.js"></script>
-<script src="HoppingDog/Release/fileloader.js"></script>
-<script>if (!isMobile && !(!Math.fround)) {
-  var script = document.createElement('script');
-  script.src = "HoppingDog/Release/Hopping Dog.js";
-  document.body.appendChild(script);
-} else {
-  var codeXHR = new XMLHttpRequest();
-  codeXHR.open('GET', 'HoppingDog/Release/Hopping Dog.js', true);
-  codeXHR.onload = function() {
-    var code = codeXHR.responseText;
-    if (!Math.fround) { 
-try {
-  console.log('optimizing out Math.fround calls');
-  var m = /var ([^=]+)=global\.Math\.fround;/.exec(code);
-  var minified = m[1];
-  if (!minified) throw 'fail';
-  var startAsm = code.indexOf('// EMSCRIPTEN_START_FUNCS');
-  var endAsm = code.indexOf('// EMSCRIPTEN_END_FUNCS');
-  var asm = code.substring(startAsm, endAsm);
-  do {
-    var moar = false; // we need to re-do, as x(x( will not be fixed
-    asm = asm.replace(new RegExp('[^a-zA-Z0-9\\$\\_]' + minified + '\\(', 'g'), function(s) { moar = true; return s[0] + '(' });
-  } while (moar);
-  code = code.substring(0, startAsm) + asm + code.substring(endAsm);
-  code = code.replace("'use asm'", "'almost asm'");
-} catch(e) { console.log('failed to optimize out Math.fround calls ' + e) }
- }
+<script src="HoppingDog/Release/UnityLoader.js"></script>
 
-    var blob = new Blob([code], { type: 'text/javascript' });
-    codeXHR = null;
-    var src = URL.createObjectURL(blob);
-    var script = document.createElement('script');
-    script.src = URL.createObjectURL(blob);
-    script.onload = function() {
-      URL.revokeObjectURL(script.src);
-    };
-    document.body.appendChild(script);
-  };
-  codeXHR.send(null);
-}
-</script>
          
         </div><!-- /.blog-main -->
 
