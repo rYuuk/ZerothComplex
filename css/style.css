@@ -1,0 +1,98 @@
+/* CSS Document */
+.js .flash {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #50C28C;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+}
+
+.center {
+  width: 320px;
+  margin: 0;
+  text-align: center;
+  z-index: 100;
+  background-color: #50C28C;
+  display: inline-block;
+}
+.center nav {
+  background-color: #302B24;
+  width: 100%;
+  height: auto;
+  padding-top: 8px;
+  margin-top: 0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.center nav .navItem {
+  border-top: thin #784F24 solid;
+  height: 54px;
+  padding-top: 16px;
+}
+.center nav .navItem a {
+  font-family: "clone-rounded-latin", "Helvetica", sans-serif;
+  font-weight: 200;
+  color: #FAE4B9;
+  text-decoration: none;
+}
+.center nav .navItem a:hover {
+  color: #FF8D17;
+}
+.center nav .navItem a:active {
+  color: #FF8D17;
+}
+.center nav .last {
+  border-bottom: thin #784F24 solid;
+}
+
+.contentSection {
+  padding-left: 220px;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  background-color: #302B24;
+}
+
+.project {
+  width: 668px;
+  height: 350px;
+  background-color: #26231D;
+  margin: 16px;
+  border-radius: 10px;
+}
+
+#logo {
+  margin-left: 25px;
+  margin-top: 80px;
+  margin-bottom: 25px;
+  width: 75%;
+}
+
+.socialIconGroup ul {
+  list-style: none;
+  width: 100%;
+}
+.socialIconGroup li {
+  text-align: center;
+}
+.socialIconGroup li img {
+  width: 80%;
+  left: 0;
+  margin-top: 8px;
+  margin-left: 0;
+  padding: 0;
+}
